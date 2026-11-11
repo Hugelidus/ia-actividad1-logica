@@ -89,6 +89,12 @@ kb2.tell(expr("Prueba(Parkinson, ResonanciaMagnetica)"))
 # Consulta: todos los síntomas del Parkinson
 # Creo que imprime: [{x: Temblor}, {x: Rigidez}, {x: LentitudDeMovimientos}]
 print(list(fol_bc_ask(kb2, expr("Causa(Parkinson, x)"))))
+
+# Consulta: factores de riesgo del Parkinson
+print(list(fol_bc_ask(kb2, expr("FactorDeRiesgo(Parkinson, x)"))))
+
+# Consulta: pruebas para estudiar el Parkinson
+print(list(fol_bc_ask(kb2, expr("Prueba(Parkinson, x)"))))
 # endregion
 
 
