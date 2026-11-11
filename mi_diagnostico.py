@@ -53,8 +53,7 @@ kb.tell(expr("Causa(Resfriado, DolorDeGarganta)"))
 # Antes de la consulta que piden, comprueba que has dictado todo bien: una consulta con TODOS los síntomas y otra con TODAS las enfermedades.
 # region TU TURNO
 fol_bc_ask(  # ✗ 1
-    kb, expr("Sintoma(x)")
-)  # Creo que imprime: [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]
+kb, expr("Sintoma(x)"))  # Creo que imprime: [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]
 fol_bc_ask(kb, expr("Enfermedad(x)"))  # ✗ 1 · Creo que imprime: [{x: Gripe}, {x: Resfriado}]
 # endregion
 
@@ -62,8 +61,8 @@ fol_bc_ask(kb, expr("Enfermedad(x)"))  # ✗ 1 · Creo que imprime: [{x: Gripe},
 # %% 3 · Consulta pedida: todos los síntomas del resfriado
 # Pista: es como Causa(x, Tos), pero el hueco va al otro lado.
 # region TU TURNO
-fol_bc_ask(  # ✗ 1
-    kb, expr("Causa(Resfriado, x)")
+print(fol_bc_ask(  # ✗ 1
+    kb, expr("Causa(Resfriado, x)"))
 )  # Creo que imprime: [{x: Tos}, {x: DolorDeGarganta}]
 # endregion
 
@@ -77,9 +76,9 @@ fol_bc_ask(  # ✗ 1
 # region TU TURNO
 kb2 = FolKB()
 kb2.tell(expr("Enfermedad(Parkinson)"))
-kb2.tell(expr("Sintoma(Temblor, Parkinson)"))  # ✗ 2
-kb2.tell(expr("Sintoma(Rigidez, Parkinson)"))
-kb2.tell(expr("Sintoma(LentitudDeMovimientos, Parkinson)"))
+kb2.tell(expr("Sintoma(Temblor)"))  # ✗ 2
+kb2.tell(expr("Sintoma(Rigidez)"))
+kb2.tell(expr("Sintoma(LentitudDeMovimientos)"))
 kb2.tell(expr("Causa(Parkinson, Temblor)"))
 kb2.tell(expr("Causa(Parkinson, Rigidez)"))
 kb2.tell(expr("Causa(Parkinson, LentitudDeMovimientos)"))
