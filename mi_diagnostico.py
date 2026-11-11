@@ -45,8 +45,7 @@ kb.tell(expr("Causa(Resfriado, DolorDeGarganta)"))
 # %% 2 · Comprobar la base
 # Antes de la consulta que piden, comprueba que has dictado bien todo.
 # TU TURNO: una consulta que saque TODOS los síntomas y otra con TODAS las enfermedades.
-# ✗ CORRECCIÓN (sigue pendiente): las dos consultas están bien escritas y tus predicciones tienen el formato correcto,
-#   pero NO se ve nada en la terminal: falta envolverlas en list(...) y print(...) (mira la chuleta del final).
+# ✗ CORRECCIÓN (pendiente): consultas y predicciones bien, pero no se ve nada en la terminal: falta envolverlas en print(list(...)), como en la chuleta del final.
 fol_bc_ask(
     kb, expr("Sintoma(x)")
 )  # Creo que imprime: [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]
@@ -57,7 +56,7 @@ fol_bc_ask(kb, expr("Enfermedad(x)"))  # Creo que imprime: [{x: Gripe}, {x: Resf
 # Pista: es como Causa(x, Tos), pero el hueco va al otro lado.
 # Creo que imprime: ...
 # TU TURNO:
-# ✗ CORRECCIÓN (sigue pendiente): consulta correcta (el hueco en el síntoma), pero igual que en el bloque 2: falta print(list(...)).
+# ✗ CORRECCIÓN (pendiente): consulta correcta (el hueco va en el síntoma), pero igual que en el bloque 2: falta print(list(...)).
 fol_bc_ask(
     kb, expr("Causa(Resfriado, x)")
 )  # Creo que imprime: [{x: Tos}, {x: DolorDeGarganta}]
@@ -72,14 +71,11 @@ fol_bc_ask(
 #   Pruebas: examen neurológico, resonancia magnética
 # TU TURNO:
 # ✓ Buen plan: añadir FactorDeRiesgo y Prueba hace la base más completa (suma en «creación detallada»).
-# ✓ Corregido: base propia kb2, síntomas unidos con Causa y consulta con predicción acertada.
-#   (Cuando lo leas, borra estas dos líneas de ✓.)
+# ✓ Corregido: base propia kb2, síntomas unidos con Causa y consulta con predicción acertada. (Cuando lo leas, borra las dos líneas de ✓.)
 
 kb2 = FolKB()
 kb2.tell(expr("Enfermedad(Parkinson)"))
-# ✗ CORRECCIÓN (coherencia, cuenta en la nota): aquí Sintoma tiene DOS argumentos y en el bloque 1 tenía UNO
-#   (Sintoma(Fiebre)). Un mismo predicado debe significar lo mismo en todo el trabajo. Además, «qué
-#   enfermedad lo produce» ya lo dicen tus Causa de abajo, así que esto lo repite. Elige una forma y úsala igual en las dos bases.
+# ✗ CORRECCIÓN (coherencia, cuenta en la nota): aquí Sintoma tiene DOS argumentos y en el bloque 1 UNO, Sintoma(Fiebre). Un predicado debe significar lo mismo en todo el trabajo; además, «de qué enfermedad» ya lo dicen tus Causa de abajo. Elige una forma y úsala igual en las dos bases.
 kb2.tell(expr("Sintoma(Temblor, Parkinson)"))
 kb2.tell(expr("Sintoma(Rigidez, Parkinson)"))
 kb2.tell(expr("Sintoma(LentitudDeMovimientos, Parkinson)"))
