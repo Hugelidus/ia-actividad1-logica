@@ -4,7 +4,7 @@
 # Diagnóstico médico con lógica de primer orden
 
 # region CORRECCIONES · ronda 3
-# ✗ 1 · Bloques 2 y 3: no se ve nada en la terminal. Las consultas y las predicciones están bien, pero falta envolverlas en print(list(...)), como en la chuleta.
+# ✓ 1 · Bloques 2 y 3: ya se ven las respuestas con print(list(...)) y las tres predicciones han clavado la salida.
 # ✗ 2 · Bloque 4 (coherencia, cuenta en la nota): Sintoma tiene DOS argumentos y en el bloque 1 UNO. Un predicado debe significar lo mismo en todo el trabajo, y «de qué enfermedad» ya lo dicen tus Causa. Elige una forma y úsala igual en las dos bases.
 # endregion
 
@@ -52,9 +52,9 @@ kb.tell(expr("Causa(Resfriado, DolorDeGarganta)"))
 # Antes de la consulta que piden, comprueba que has dictado todo bien: una consulta con TODOS los síntomas y otra con TODAS las enfermedades.
 # region TU TURNO
 # Creo que imprime: [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]
-fol_bc_ask(kb, expr("Sintoma(x)"))  # ✗ 1
+print(list(fol_bc_ask(kb, expr("Sintoma(x)"))))
 # Creo que imprime: [{x: Gripe}, {x: Resfriado}]
-fol_bc_ask(kb, expr("Enfermedad(x)"))  # ✗ 1
+print(list(fol_bc_ask(kb, expr("Enfermedad(x)"))))
 # endregion
 
 
@@ -62,7 +62,7 @@ fol_bc_ask(kb, expr("Enfermedad(x)"))  # ✗ 1
 # Pista: es como Causa(x, Tos), pero el hueco va al otro lado.
 # region TU TURNO
 # Creo que imprime: [{x: Tos}, {x: DolorDeGarganta}]
-print(fol_bc_ask(kb, expr("Causa(Resfriado, x)")))  # ✗ 1
+print(list(fol_bc_ask(kb, expr("Causa(Resfriado, x)"))))
 # endregion
 
 
