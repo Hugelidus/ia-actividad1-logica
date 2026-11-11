@@ -23,43 +23,63 @@ kb = FolKB()
 # Un predicado que diga «X es un síntoma». Solo habla de UNA cosa.
 # Síntomas: fiebre, tos, dolor de garganta (los nombres no pueden llevar espacios).
 # TU TURNO (3 líneas):
-
+kb.tell(expr("Sintoma(Fiebre)"))
+kb.tell(expr("Sintoma(Tos)"))
+kb.tell(expr("Sintoma(DolorDeGarganta)"))
 
 # --- Predicado 2: enfermedades ------------------------------------------------
 # Igual que el anterior, pero «X es una enfermedad». Enfermedades: gripe, resfriado.
 # TU TURNO (2 líneas):
-
+kb.tell(expr("Enfermedad(Gripe)"))
+kb.tell(expr("Enfermedad(Resfriado)"))
 
 # --- Predicado 3: causas ------------------------------------------------------
 # Causa(enfermedad, síntoma), siempre en ese orden.
 kb.tell(expr("Causa(Gripe, Fiebre)"))
 kb.tell(expr("Causa(Resfriado, Tos)"))
 # TU TURNO: faltan 3 (gripe → tos, gripe → dolor de garganta, resfriado → dolor de garganta)
-
+kb.tell(expr("Causa(Gripe, Tos)"))
+kb.tell(expr("Causa(Gripe, DolorDeGarganta)"))
+kb.tell(expr("Causa(Resfriado, DolorDeGarganta)"))
 
 # %% 2 · Comprobar la base
 # Antes de la consulta que piden, comprueba que has dictado bien todo.
 # TU TURNO: una consulta que saque TODOS los síntomas y otra con TODAS las enfermedades.
-# Creo que imprime: ...
+fol_bc_ask(
+    kb, expr("Sintoma(x)")
+)  # Creo que imprime: [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]
+fol_bc_ask(kb, expr("Enfermedad(x)"))  # Creo que imprime: [{x: Gripe}, {x: Resfriado}]
 
 
 # %% 3 · Consulta pedida: todos los síntomas del resfriado
 # Pista: es como Causa(x, Tos), pero el hueco va al otro lado.
 # Creo que imprime: ...
 # TU TURNO:
-
+fol_bc_ask(
+    kb, expr("Causa(Resfriado, x)")
+)  # Creo que imprime: [{x: Tos}, {x: DolorDeGarganta}]
 
 # %% 4 · Mi enfermedad (20 % de la nota)
 # Crea OTRA base de conocimiento (kb2 = FolKB()) para una enfermedad que elijas tú.
 # Primero el plan, sin código (rellénalo):
-#   Enfermedad: ...
-#   Síntomas: ...
+#   Enfermedad: Parkinson
+#   Síntomas: temblor, rigidez, lentitud de movimientos
 #   ¿Algún predicado nuevo? (factores de riesgo, pruebas, tratamiento…)
+#   Factores de riesgo: edad avanzada, antecedentes familiares
+#   Pruebas: examen neurológico, resonancia magnética
 # TU TURNO:
-
+kb.tell(expr("Enfermedad(Parkinson)"))
+kb.tell(expr("Sintoma(Temblor)"))
+kb.tell(expr("Sintoma(Rigidez)"))
+kb.tell(expr("Sintoma(LentitudDeMovimientos)"))
+kb.tell(expr("FactorDeRiesgo(Parkinson, EdadAvanzada)"))
+kb.tell(expr("FactorDeRiesgo(Parkinson, AntecedentesFamiliares)"))
+kb.tell(expr("Prueba(Parkinson, ExamenNeurologico)"))
+kb.tell(expr("Prueba(Parkinson, ResonanciaMagnetica)"))
 
 # %% Paso 1 · lo que probaste para aprender (bórralo al final, no va en la entrega)
 # print(list(fol_bc_ask(kb, expr("Causa(Gripe, Fiebre)"))))     → [{}]               sí
 # print(list(fol_bc_ask(kb, expr("Causa(Resfriado, Tos)"))))    → [{}]               sí
 # print(list(fol_bc_ask(kb, expr("Causa(x, Tos)"))))            → [{x: Resfriado}]   sí, si x = Resfriado
 # print(list(fol_bc_ask(kb, expr("Causa(Gripe, Tos)"))))        → []                 no
+# print(list(fol_bc_ask(kb, expr("Causa(Gripe, x)"))))          → [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]   sí, si x vale alguno de esos
