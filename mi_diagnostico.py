@@ -77,14 +77,24 @@ fol_bc_ask(
 # ✗ CORRECCIÓN 2: Sintoma(Temblor) dice que el temblor es un síntoma, pero no DE QUÉ enfermedad.
 #   Falta unir cada síntoma con el Parkinson, con el mismo predicado que usaste en el bloque 1 (3 hechos).
 # ✗ CORRECCIÓN 3: falta una consulta que lo compruebe: los síntomas del Parkinson, con tu predicción.
-kb.tell(expr("Enfermedad(Parkinson)"))
-kb.tell(expr("Sintoma(Temblor)"))
-kb.tell(expr("Sintoma(Rigidez)"))
-kb.tell(expr("Sintoma(LentitudDeMovimientos)"))
-kb.tell(expr("FactorDeRiesgo(Parkinson, EdadAvanzada)"))
-kb.tell(expr("FactorDeRiesgo(Parkinson, AntecedentesFamiliares)"))
-kb.tell(expr("Prueba(Parkinson, ExamenNeurologico)"))
-kb.tell(expr("Prueba(Parkinson, ResonanciaMagnetica)"))
+
+kb2 = FolKB()
+kb2.tell(expr("Enfermedad(Parkinson)"))
+kb2.tell(expr("Sintoma(Temblor, Parkinson)"))
+kb2.tell(expr("Sintoma(Rigidez, Parkinson)"))
+kb2.tell(expr("Sintoma(LentitudDeMovimientos, Parkinson)"))
+kb2.tell(expr("Causa(Parkinson, Temblor)"))
+kb2.tell(expr("Causa(Parkinson, Rigidez)"))
+kb2.tell(expr("Causa(Parkinson, LentitudDeMovimientos)"))
+kb2.tell(expr("FactorDeRiesgo(Parkinson, EdadAvanzada)"))
+kb2.tell(expr("FactorDeRiesgo(Parkinson, AntecedentesFamiliares)"))
+kb2.tell(expr("Prueba(Parkinson, ExamenNeurologico)"))
+kb2.tell(expr("Prueba(Parkinson, ResonanciaMagnetica)"))
+
+# Consulta: todos los síntomas del Parkinson
+# Creo que imprime: [{x: Temblor}, {x: Rigidez}, {x: LentitudDeMovimientos}]
+print(list(fol_bc_ask(kb2, expr("Causa(Parkinson, x)"))))
+
 
 # %% Paso 1 · lo que probaste para aprender (bórralo al final, no va en la entrega)
 # print(list(fol_bc_ask(kb, expr("Causa(Gripe, Fiebre)"))))     → [{}]               sí
