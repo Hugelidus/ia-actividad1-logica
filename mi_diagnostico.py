@@ -5,7 +5,7 @@
 
 # region CORRECCIONES · ronda 3
 # ✓ 1 · Bloques 2 y 3: ya se ven las respuestas con print(list(...)) y las tres predicciones han clavado la salida.
-# ✗ 2 · Bloque 4 (coherencia, cuenta en la nota): Sintoma tiene DOS argumentos y en el bloque 1 UNO. Un predicado debe significar lo mismo en todo el trabajo, y «de qué enfermedad» ya lo dicen tus Causa. Elige una forma y úsala igual en las dos bases.
+# ✓ 2 · Bloque 4: Sintoma con un solo argumento en las dos bases. Coherente: Sintoma dice qué es un síntoma y Causa, de qué enfermedad.
 # endregion
 
 # region CHULETA
@@ -75,7 +75,7 @@ print(list(fol_bc_ask(kb, expr("Causa(Resfriado, x)"))))
 # region TU TURNO
 kb2 = FolKB()
 kb2.tell(expr("Enfermedad(Parkinson)"))
-kb2.tell(expr("Sintoma(Temblor)"))  # ✗ 2
+kb2.tell(expr("Sintoma(Temblor)"))
 kb2.tell(expr("Sintoma(Rigidez)"))
 kb2.tell(expr("Sintoma(LentitudDeMovimientos)"))
 kb2.tell(expr("Causa(Parkinson, Temblor)"))
