@@ -45,6 +45,8 @@ kb.tell(expr("Causa(Resfriado, DolorDeGarganta)"))
 # %% 2 · Comprobar la base
 # Antes de la consulta que piden, comprueba que has dictado bien todo.
 # TU TURNO: una consulta que saque TODOS los síntomas y otra con TODAS las enfermedades.
+# ✗ CORRECCIÓN: las dos consultas están bien escritas y tus predicciones tienen el formato correcto,
+#   pero NO se ve nada en la terminal: falta envolverlas en list(...) y print(...) (mira la chuleta del final).
 fol_bc_ask(
     kb, expr("Sintoma(x)")
 )  # Creo que imprime: [{x: Fiebre}, {x: Tos}, {x: DolorDeGarganta}]
@@ -55,6 +57,7 @@ fol_bc_ask(kb, expr("Enfermedad(x)"))  # Creo que imprime: [{x: Gripe}, {x: Resf
 # Pista: es como Causa(x, Tos), pero el hueco va al otro lado.
 # Creo que imprime: ...
 # TU TURNO:
+# ✗ CORRECCIÓN: consulta correcta (el hueco en el síntoma), pero igual que en el bloque 2: falta print(list(...)).
 fol_bc_ask(
     kb, expr("Causa(Resfriado, x)")
 )  # Creo que imprime: [{x: Tos}, {x: DolorDeGarganta}]
@@ -68,6 +71,12 @@ fol_bc_ask(
 #   Factores de riesgo: edad avanzada, antecedentes familiares
 #   Pruebas: examen neurológico, resonancia magnética
 # TU TURNO:
+# ✓ Buen plan: añadir FactorDeRiesgo y Prueba hace la base más completa (suma en «creación detallada»).
+# ✗ CORRECCIÓN 1: todo va a kb, la libreta de gripe y resfriado. El enunciado pide OTRA base:
+#   crea kb2 al principio del bloque y dicta los hechos ahí.
+# ✗ CORRECCIÓN 2: Sintoma(Temblor) dice que el temblor es un síntoma, pero no DE QUÉ enfermedad.
+#   Falta unir cada síntoma con el Parkinson, con el mismo predicado que usaste en el bloque 1 (3 hechos).
+# ✗ CORRECCIÓN 3: falta una consulta que lo compruebe: los síntomas del Parkinson, con tu predicción.
 kb.tell(expr("Enfermedad(Parkinson)"))
 kb.tell(expr("Sintoma(Temblor)"))
 kb.tell(expr("Sintoma(Rigidez)"))
