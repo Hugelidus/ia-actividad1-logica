@@ -14,7 +14,7 @@
 # fol_bc_ask(kb, expr("Pregunta"))   → preguntar (envuélvelo en print(list(...)))
 # Mayúscula = constante (Gripe) · minúscula = hueco / variable (x)
 # Respuestas:  [{}] = sí  ·  [{x: Resfriado}] = sí, si x vale Resfriado  ·  [] = no
-# Cada bloque «# %%» se ejecuta por separado con Ctrl + Alt + Enter: si uno falla, los demás siguen.
+# Cada bloque (las líneas con %% y título) se ejecuta por separado con Ctrl + Alt + Enter: si uno falla, los demás siguen.
 # endregion
 
 
